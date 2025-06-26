@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire Profil Expert IDR</title>
+    <link rel="icon" type="image/png" href="https://institut-du-referencement.com/wp-content/uploads/2022/06/LOGO-IDR-transparent.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e6ed;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: #667eea;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            display: none;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+            border: 1px solid #f5c6cb;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Questionnaire Profil Expert IDR</h1>
+        <p class="subtitle">Ce questionnaire servira à alimenter la base de données de notre agent IA Whatsapp, répondez aux questions suivantes de manière succincte et précise</p>
+        
+        <form id="profilForm">
+            <div class="form-group">
+                <label for="nom">Prénom et Nom *</label>
+                <input type="text" id="nom" name="nom" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="presentation">1. Présentation personnelle *</label>
+                <textarea id="presentation" name="presentation" placeholder="Peux-tu te présenter en quelques mots ? (ton parcours, tes centres d'intérêt, ce qui te motive au travail)" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="expertise">2. Expertise et compétences *</label>
+                <textarea id="expertise" name="expertise" placeholder="Quelles sont tes principales compétences en SEO/référencement et sur quels types de projets préfères-tu travailler ?" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="communication">3. Style de communication *</label>
+                <textarea id="communication" name="communication" placeholder="Comment préfères-tu communiquer avec tes collègues et clients ? (direct/diplomatique, écrit/oral, formel/décontracté, etc.)" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="organisation">4. Organisation et disponibilité *</label>
+                <textarea id="organisation" name="organisation" placeholder="Comment organises-tu ton travail au quotidien et quels sont tes créneaux de disponibilité préférés ?" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="preferences">5. Préférences et particularités *</label>
+                <textarea id="preferences" name="preferences" placeholder="Y a-t-il des éléments importants à connaître sur toi pour mieux collaborer ? (façon de recevoir les retours, moments de productivité, pet peeves à éviter, etc.)" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">Envoyer le questionnaire</button>
+        </form>
+
+        <div class="loading" id="loading">Envoi en cours...</div>
+        <div class="success-message" id="successMessage">Questionnaire envoyé avec succès ! Merci pour vos réponses.</div>
+        <div class="error-message" id="errorMessage">Une erreur s'est produite lors de l'envoi. Veuillez réessayer.</div>
+    </div>
+
+    <script>
+        document.getElementById('profilForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const loading = document.getElementById('loading');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Cacher les messages précédents
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Afficher le loading
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Envoi...';
+            loading.style.display = 'block';
+            
+            // Collecter les données du formulaire
+            const formData = {
+                nom: document.getElementById('nom').value,
+                email: document.getElementById('email').value,
+                presentation: document.getElementById('presentation').value,
+                expertise: document.getElementById('expertise').value,
+                communication: document.getElementById('communication').value,
+                organisation: document.getElementById('organisation').value,
+                preferences: document.getElementById('preferences').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            try {
+                const response = await fetch('https://n8n.srv749948.hstgr.cloud/webhook/68b41763-fcd6-47cd-aa2e-d54c52a6407a', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                if (response.ok) {
+                    // Succès
+                    loading.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    document.getElementById('profilForm').reset();
+                    
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Envoyer le questionnaire';
+                    }, 3000);
+                } else {
+                    throw new Error('Erreur réseau');
+                }
+                
+            } catch (error) {
+                // Erreur
+                loading.style.display = 'none';
+                errorMessage.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Envoyer le questionnaire';
+                console.error('Erreur:', error);
+            }
+        });
+    </script>
+</body>
+</html>
